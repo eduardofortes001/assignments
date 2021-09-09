@@ -32,11 +32,15 @@ Download all files on the [link](https://github.com/eduardofortes001/assignments
 ```bash
 git clone https://github.com/eduardofortes001/assignments
 ```
-Make sure you have AWS credentials with permission to deploy and execute lambda functions, get EC2 information, as well as a IAM role created with these 
-permissions.
-Check if you have a default AWS profile created with your credentials.
-Update the key "role_arn" in the aws_lambda_function.tf file.
-Deploy the AWS Lambda Function executing the following commands (It will ask for an AWS region):
+Make sure you have AWS credentials with the following permissions:
+
+- Deploy and execute AWS Lambda functions;
+- Get EC2 information
+- An IAM role created with these permissions.
+- An AWS default profile created with your credentials.
+
+Update the key "role_arn" in the aws_lambda_function.tf file with the propper IAM Role arn.
+Deploy the AWS Lambda Function executing the following commands (It will ask for an AWS Region):
 ```bash
 terraform new workspace temporary
 terraform init
@@ -51,9 +55,9 @@ After the deployment you just need run the script getec2.py.
 ```bash
 ./getec2.py
 ```
-It will ask for an Instance id or * which will get all instances available in the region and present the information in a simple table format.
+It will ask for an Instance Id or * which will get all instances available in the region and present the information in a simple table format.
 
-You could also invoke the lambda function directly from CLI but in this case you have to replace instance id in the payload properly either with * or the propper Instance id and look for the response.json file where the command will write the information in a json format.
+You could also invoke the lambda function directly from CLI but in this case you have to replace instance_id in the payload propperly either with * or the propper Instance id and look for the response.json file where the command will write the information in a json format.
 ```bash
 aws lambda invoke --cli-binary-format raw-in-base64-out --function-name ec2_Function --payload '{"Instance":"instance_id"}' response.json
 ```
@@ -62,7 +66,7 @@ cat response.json
 ```
 Enjoy!
 
-## Authors
+## Author
 
 - [@eduardofortes001](https://github.com/eduardofortes001)
 
